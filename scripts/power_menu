@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# === Configurazione ===
+WOFI_CMD="wofi --dmenu --width=800 --height=200 --columns=6 --hide-scroll --prompt Power"
+
+# === Voci del menu ===
+options=(
+  "⏻ Spegni"
+  "🔁 Riavvia"
+  "💤 Sospendi"
+  "🌙 Iberna"
+  "🔒 Blocca"
+  "🚪 Esci"
+)
+menu="$(printf '%s\n' "${options[@]}")"
+
+# === Mostra menu ===
+choice=$(echo "$menu" | $WOFI_CMD)
+
+# === Esegui l'azione ===
+case "$choice" in
+  "⏻ Spegni")
+    systemctl poweroff
+    ;;
+  "🔁 Riavvia")
+    systemctl reboot
+    ;;
+  "💤 Sospendi")
+    systemctl suspend
+    ;;
+  "🌙 Iberna")
+    systemctl hibernate
+    ;;
+  "🔒 Blocca")
+    if command -v swaylock &>/dev/null; then
+      swaylock
+    elif command -v hyprlock &>/dev/null; then
+      hyprlock
+    else
+      notify-send "Locker non trovato"
+    fi
+    ;;
+  "🚪 Esci")
+    if command -v loginctl &>/dev/null; then
+      loginctl terminate-user "$USER"
+    else
+      pkill -KILL -u "$USER"
+    fi
+    ;;
+  *)
+    # Chiuso o annullato
+    ;;
+esac

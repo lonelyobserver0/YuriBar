@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# === Comandi ===
+WOFI="wofi --dmenu --width=300 --height=400 --prompt Wi-Fi"
+NOTIFY="notify-send"
+
+# === Funzioni ===
+
+toggle_wifi() {
+    status=$(nmcli radio wifi)
+    if [ "$status" = "enabled" ]; then
+        nmcli radio wifi off
+        $NOTIFY "Wi-Fi" "Disattivato"
+    else
+        nmcli radio wifi on
+        $NOTIFY "Wi-Fi" "Attivato"
+    fi
+}
+
+get_networks() {
+    nmcli -f SSID,SECURITY,SIGNAL device wifi list | awk 'NR>1 {print $0}' | column -t
+}
+
+connect_to_network() {
+    ssid=$(get_networks | $WOFI --prompt "Connetti a")
+    [ -z "$ssid" ] && exit
+
+    # Estrai solo l'SSID (prima colonna)
+    ssid_name=$(echo "$ssid" | awk '{print $1}')
+    
+    # Controlla se la rete è già salvata
+    if nmcli connection show | grep -q "$ssid_name"; then
+        nmcli connection up "$ssid_name"
+        $NOTIFY "Wi-Fi" "Connesso a $ssid_name"
+    else
+        password=$(wofi --dmenu --password --prompt "Password per $ssid_name")
+        [ -z "$password" ] && exit
+        nmcli device wifi connect "$ssid_name" password "$password"
+        $NOTIFY "Wi-Fi" "Connesso a $ssid_name"
+    fi
+}
+
+disconnect_wifi() {
+    current=$(nmcli -t -f NAME connection show --active | head -n 1)
+    [ -n "$current" ] && nmcli connection down "$current" && $NOTIFY "Wi-Fi" "Disconnesso da $current"
+}
+
+# === Menu ===
+menu="📶 Attiva/Disattiva\n🔌 Connetti a rete\n❌ Disconnetti"
+choice=$(echo -e "$menu" | $WOFI)
+
+case "$choice" in
+    "📶 Attiva/Disattiva")
+        toggle_wifi
+        ;;
+    "🔌 Connetti a rete")
+        connect_to_network
+        ;;
+    "❌ Disconnetti")
+        disconnect_wifi
+        ;;
+    *)
+        # annullato o chiuso
+        ;;
+esac

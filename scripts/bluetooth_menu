@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# === Comandi principali ===
+WOFI="wofi --dmenu --width=300 --height=400 --prompt Bluetooth"
+
+# === Funzioni ===
+
+toggle_bluetooth() {
+    powered=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
+    if [ "$powered" = "yes" ]; then
+        bluetoothctl power off
+        notify-send "Bluetooth" "Disattivato"
+    else
+        bluetoothctl power on
+        notify-send "Bluetooth" "Attivato"
+    fi
+}
+
+list_devices() {
+    bluetoothctl devices | awk '{$1=""; print substr($0,2)}'
+}
+
+get_mac_from_name() {
+    bluetoothctl devices | grep "$1" | awk '{print $2}'
+}
+
+connect_device() {
+    name="$1"
+    mac=$(get_mac_from_name "$name")
+    bluetoothctl connect "$mac"
+    notify-send "Bluetooth" "Connesso a $name"
+}
+
+disconnect_device() {
+    name="$1"
+    mac=$(get_mac_from_name "$name")
+    bluetoothctl disconnect "$mac"
+    notify-send "Bluetooth" "Disconnesso da $name"
+}
+
+# === Menu principale ===
+
+main_menu="🔁 Attiva/Disattiva\n📱 Connetti\n❌ Disconnetti"
+choice=$(echo -e "$main_menu" | $WOFI)
+
+case "$choice" in
+    "🔁 Attiva/Disattiva")
+        toggle_bluetooth
+        ;;
+    "📱 Connetti")
+        devices=$(list_devices)
+        [ -z "$devices" ] && notify-send "Bluetooth" "Nessun dispositivo trovato" && exit
+        selected=$(echo "$devices" | $WOFI --prompt "Connetti a")
+        [ -n "$selected" ] && connect_device "$selected"
+        ;;
+    "❌ Disconnetti")
+        devices=$(list_devices)
+        [ -z "$devices" ] && notify-send "Bluetooth" "Nessun dispositivo trovato" && exit
+        selected=$(echo "$devices" | $WOFI --prompt "Disconnetti da")
+        [ -n "$selected" ] && disconnect_device "$selected"
+        ;;
+    *)
+        # annullato o chiuso
+        ;;
+esac

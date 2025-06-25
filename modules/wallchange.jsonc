@@ -1,0 +1,12 @@
+    "custom/wallchange": {
+        "format": "{}",
+        "rotate": ${r_deg},
+        "exec": "echo ; echo 󰆊 switch wallpaper",
+        "on-click": "~/.config/hypr/scripts/swwwrandomwall.sh ~/Pictures/wallpapers/01_landescape_plants_nature_civil/",
+        // "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
+        // "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/themeselect.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
