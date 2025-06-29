@@ -41,6 +41,9 @@ case "$choice" in
     fi
     ;;
   "🚪 Esci")
+    if [[ "$XDG_SESSION_DESKTOP" == "Hyprland" || "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
+      hyprctl dispatch exit
+    fi
     if command -v loginctl &>/dev/null; then
       loginctl terminate-user "$USER"
     else
