@@ -60,7 +60,7 @@ tooltip {
 /* Blocchi generali */
 #custom-power, #taskbar, #custom-sysupdate, #mpris, #idle_inhibitor,
 #cpu, #memory, #disk, #temperature, #battery, #pulseaudio, #network,
-#bluetooth, #tray, #backlight, #clock, #custom-notification {
+#bluetooth, #tray, #backlight, #clock, #custom-notification, #custom-sysinfo {
   background: #0D1526;
   padding: 3px 8px;
   margin: 5px;
@@ -122,6 +122,10 @@ tooltip {
 }
 
 #clock {
+  color: #36A1CC;
+}
+
+#custom-sysinfo {
   color: #36A1CC;
 }
 

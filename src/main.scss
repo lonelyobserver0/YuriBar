@@ -67,7 +67,7 @@ tooltip {
 /* Blocchi generali */
 #custom-power, #taskbar, #custom-sysupdate, #mpris, #idle_inhibitor,
 #cpu, #memory, #disk, #temperature, #battery, #pulseaudio, #network,
-#bluetooth, #tray, #backlight, #clock, #custom-notification {
+#bluetooth, #tray, #backlight, #clock, #custom-notification, #custom-sysinfo {
   background: walcolors.$background;
   padding: $padding-y $padding-x;
   margin: $margin;
@@ -90,6 +90,7 @@ tooltip {
 #custom-sysupdate.up-to-date { color: walcolors.$color9; }
 #custom-sysupdate.updates-available { color: walcolors.$color12; }
 #clock { color: walcolors.$color4; }
+#custom-sysinfo { color: walcolors.$color4; }
 
 #taskbar button {
   padding: 4px 8px;
