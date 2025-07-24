@@ -295,12 +295,9 @@
     "on-click": "footclient --title fly_is_foot -w 1067x630 -e sudo pacman -Syu"
   },
   "custom/sysinfo": {
-    "format": "",
-    "tooltip": true,
-    "tooltip-format": " CPU: {cpu_usage}%\n RAM: {ram_used} / {ram_total} ({ram_percent}%)\n󰋊 Disk: {disk_used} / {disk_total} ({disk_percent}%)",
     "exec": "~/.config/waybar/scripts/sysinfo.sh",
     "interval": 2,
-    "return-type": "json"
+    "return-type": "json",
+    "tooltip": true
   }
-
 }
