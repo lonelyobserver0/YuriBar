@@ -1,4 +1,5 @@
-@use 'walcolors';
+@use '../../.cache/wal/colors.scss' as walcolors;
+
 
 $radius: 15px;
 $padding-y: 3px;
