@@ -73,7 +73,7 @@
     "spacing": 0,
     "tooltip-format": "{title}",
     "on-click": "activate",
-    "on-click-middle": "close",
+    "on-click-middle": "",
     "ignore-list": [
       "Alacritty",
       "Rofi"
