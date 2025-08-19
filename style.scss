@@ -5,6 +5,7 @@ $radius: 15px;
 $padding-y: 3px;
 $padding-x: 8px;
 $margin: 5px;
+$background: walcolors.$background;
 
 * {
   border: none;
@@ -17,7 +18,8 @@ $margin: 5px;
 }
 
 window#waybar {
-  background: transparent;
+  border-radius: 0px;
+  background: $background;
   color: walcolors.$foreground;
 }
 

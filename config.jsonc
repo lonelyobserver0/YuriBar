@@ -1,7 +1,7 @@
 {
   "style": "~/.config/waybar/style.css",
   "layer": "bottom",
-  "position": "top",
+  "position": "bottom",
   "mod": "dock",
   "exclusive": true,
   "passthrough": false,
