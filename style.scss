@@ -52,6 +52,12 @@ tooltip {
   color: walcolors.$background;
 }
 
+/* workspace con finestre aperte (cioè non empty) */
+#workspaces button:not(.empty):not(.active) {
+  color: walcolors.$color6;
+  background: walcolors.$background;
+}
+
 #workspaces button.focused {
   background: walcolors.$color6;
   color: walcolors.$background;

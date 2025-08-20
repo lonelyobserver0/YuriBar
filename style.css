@@ -1,3 +1,4 @@
+
 * {
   border: none;
   border-radius: 15px;
@@ -10,21 +11,21 @@
 
 window#waybar {
   border-radius: 0px;
-  background: #0D1526;
-  color: #c2c4c8;
+  background: #100f16;
+  color: #c3c3c4;
 }
 
 /* Tooltip */
 tooltip {
-  background: #0D1526;
-  color: #c2c4c8;
+  background: #100f16;
+  color: #c3c3c4;
   border-radius: 15px;
   padding: 5px 10px;
 }
 
 /* Workspaces */
 #workspaces {
-  background: #0D1526;
+  background: #100f16;
   border-radius: 15px;
   margin: 5px;
   padding: 0 8px;
@@ -34,100 +35,106 @@ tooltip {
   padding: 5px 8px;
   margin: 0 4px;
   border-radius: 15px;
-  color: #c2c4c8;
+  color: #c3c3c4;
   background: transparent;
 }
 
 #workspaces button.active {
-  background: #36A1CC;
-  color: #0D1526;
+  background: #E09F5F;
+  color: #100f16;
+}
+
+/* workspace con finestre aperte (cioè non empty) */
+#workspaces button:not(.empty):not(.active) {
+  color: #568491;
+  background: #100f16;
 }
 
 #workspaces button.focused {
-  background: #969A9E;
-  color: #0D1526;
+  background: #568491;
+  color: #100f16;
 }
 
 #workspaces button.urgent {
-  background: #59748B;
-  color: #0D1526;
+  background: #B03B45;
+  color: #100f16;
 }
 
 #workspaces button:hover {
-  background: #659098;
-  color: #0D1526;
+  background: #DD5E69;
+  color: #100f16;
 }
 
 /* Blocchi generali */
 #custom-power, #taskbar, #custom-sysupdate, #mpris, #idle_inhibitor,
 #cpu, #memory, #disk, #temperature, #battery, #pulseaudio, #network,
 #bluetooth, #tray, #backlight, #clock, #custom-notification, #custom-sysinfo {
-  background: #0D1526;
+  background: #100f16;
   padding: 3px 8px;
   margin: 5px;
   border-radius: 15px;
-  color: #c2c4c8;
+  color: #c3c3c4;
 }
 
 /* Modificatori */
 #cpu, #memory {
-  color: #4C58AE;
+  color: #A05763;
 }
 
 #disk {
-  color: #659098;
+  color: #DD5E69;
 }
 
 #temperature {
-  color: #828482;
+  color: #D16296;
 }
 
 #temperature.critical {
-  color: #59748B;
+  color: #B03B45;
 }
 
 #mpris {
-  color: #4C58AE;
+  color: #A05763;
 }
 
 #network, #bluetooth {
-  color: #4C58AE;
+  color: #A05763;
 }
 
 #pulseaudio {
-  color: #4C58AE;
+  color: #A05763;
 }
 
 #pulseaudio.microphone {
-  color: #659098;
+  color: #DD5E69;
 }
 
 #battery {
-  color: #828482;
+  color: #D16296;
 }
 
 #backlight {
-  color: #59748B;
+  color: #B03B45;
 }
 
 #custom-power {
-  color: #59748B;
+  color: #B03B45;
 }
 
 #custom-sysupdate.up-to-date {
-  color: #59748B;
+  color: #B03B45;
 }
 
 #custom-sysupdate.updates-available {
-  color: #36A1CC;
+  color: #E09F5F;
 }
 
 #clock {
-  color: #36A1CC;
+  color: #E09F5F;
 }
 
 #custom-sysinfo {
-  color: #36A1CC;
+  color: #E09F5F;
 }
 
 #taskbar button {
@@ -135,18 +142,18 @@ tooltip {
   margin: 0 2px;
   border-radius: 15px;
   background: transparent;
-  color: #969A9E;
+  color: #568491;
 }
 
 #taskbar button.active {
-  background: #59748B;
-  color: #36A1CC;
+  background: #B03B45;
+  color: #E09F5F;
   transition: all 0.3s ease-in-out;
 }
 
 #taskbar button:hover {
-  background: #969A9E;
-  color: #828482;
+  background: #568491;
+  color: #D16296;
   transition: all 0.2s ease-in-out;
 }
 
